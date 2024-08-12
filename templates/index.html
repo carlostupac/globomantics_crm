@@ -75,3 +75,17 @@
         </script>
     </body>
 </html>
+#!/bin/bash
+echo -e "Enter IP loopback"
+read ip_loopback
+echo "la ip a conectar es: $ip_loopback"
+
+echo "#!/usr/bin/expect" >> cat8k_prueba
+echo "spawn ssh developer@$ip_loopback" >> cat8k_prueba
+echo 'expect "Password:"' >> cat8k_prueba
+echo 'send "C1sco12345\r"' >> cat8k_prueba
+echo "interact" >> cat8k_prueba
+echo "exit" >> cat8k_prueba
+chmod +x cat8k_prueba
+expect cat8k_prueba
+rm cat8k_prueba
